@@ -2,10 +2,16 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+// @ts-ignore
+import Axios from axios;
 import './bootstrap.min.css';
 import './style.css';
 
 const App = () => {
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("asd")
+  }
   return (
     <div>
       <div>
@@ -16,7 +22,7 @@ const App = () => {
           />
           <h3 className="formTitle">Hello there, Sign in to continue.</h3>
           <div className="col-md-3 formText">
-            <Form className="ms-2 mt-4">
+            <Form className="ms-2 mt-4" onSubmit={handleSubmit}>
               <Form.Group
                 className="mb-3 blockLevel"
                 controlId="formBasicEmail"
