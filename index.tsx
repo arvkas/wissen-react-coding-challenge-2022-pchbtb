@@ -16,7 +16,7 @@ const App = () => {
           />
           <h3 className="formTitle">Hello there, Sign in to continue.</h3>
           <div className="col-md-4">
-            <Form className="ms-2">
+            <Form className="ms-2 mt-4">
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label className="mailLabel">Email</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" />
