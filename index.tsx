@@ -15,15 +15,28 @@ const App = () => {
             className="logoImg"
           />
           <h3 className="formTitle">Hello there, Sign in to continue.</h3>
-          <div className="col-md-4">
+          <div className="col-md-4 formText">
             <Form className="ms-2 mt-4">
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group
+                className="mb-3 blockLevel"
+                controlId="formBasicEmail"
+              >
                 <Form.Label className="mailLabel">Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Control type="email" />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Group
+                className="mb-3 mt-4 blockLevel"
+                controlId="formBasicPassword"
+              >
                 <Form.Label className="mailLabel">Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" />
+              </Form.Group>
+              <Form.Group
+                className="mb-3 mt-4 blockLevel"
+                controlId="formBasicCheckbox"
+              >
+                <Form.Check aria-label="option 1" />
+                <Form.Label className="mailLabel">Password</Form.Label>
               </Form.Group>
               <Button
                 variant="primary"

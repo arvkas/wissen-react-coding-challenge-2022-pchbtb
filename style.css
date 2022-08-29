@@ -16,11 +16,18 @@ h3 {
   font-weight: bold;
 }
 .mailLabel {
-  color: #a3a3a3;
+  color: #8d8d8d;
 }
 .customBtn {
   background-color: #cad1e7;
-  color: rgb(4, 4, 88);
+  color: rgb(68, 46, 170);
   border: none;
   line-height: 40px;
+  font-weight: bold;
+}
+.formText {
+  font-size: 14px;
+}
+.blockLevel {
+  display: block;
 }
