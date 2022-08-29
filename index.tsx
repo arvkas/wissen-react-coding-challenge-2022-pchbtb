@@ -15,28 +15,34 @@ const App = () => {
             className="logoImg"
           />
           <h3 className="formTitle">Hello there, Sign in to continue.</h3>
-          <div className="col-md-4 formText">
+          <div className="col-md-3 formText">
             <Form className="ms-2 mt-4">
               <Form.Group
                 className="mb-3 blockLevel"
                 controlId="formBasicEmail"
               >
-                <Form.Label className="">Email</Form.Label>
+                <label className="mailLabel">Email</label>
                 <Form.Control type="email" className="inputField" />
               </Form.Group>
               <Form.Group
                 className="mb-3 mt-4 blockLevel"
                 controlId="formBasicPassword"
               >
-                <Form.Label className="">Password</Form.Label>
+                <label className="mailLabel">Password</label>
                 <Form.Control type="password" className="inputField" />
               </Form.Group>
               <Form.Group
                 className="mb-3 mt-4 blockLevel"
                 controlId="formBasicCheckbox"
               >
-                <Form.Check aria-label="option 1" />
-                <Form.Label className="mailLabel">Password</Form.Label>
+                <Form.Label className="mailLabel">
+                  <input type="checkbox" name="terms" className="terms form-check-input" />
+                  <span>
+                    By Crating or logging into an account, you are agreeing with
+                    our <strong>Terms & Conitions</strong> and{' '}
+                    <strong>Privacy Polycis</strong>
+                  </span>
+                </Form.Label>
               </Form.Group>
               <Button
                 variant="primary"
