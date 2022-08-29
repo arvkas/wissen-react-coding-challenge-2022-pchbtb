@@ -70,41 +70,48 @@ const WelcomeSection = (props) => {
 const FormSection = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  let validated = true;
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log('asd');
-    try {
-      Axios.post('https://reqres.in/api/login', {
-        email,
-        password,
-      })
-        .then((response) => {
-          let data = response.data;
-          if (data) {
-            props.setLoggedIn(true);
-            localStorage.setItem('loginToken', data.token);
-            localStorage.setItem('userEmail', email);
-            console.log(`token: ${data.token}`);
-            toast('Successfully logged in');
-            Axios.post(`https://reqres.in/api/${data.token}`).then(
-              (response) => {
-                let data = response.data;
-                console.log(`secure API ${JSON.stringify(response.headers)}`);
-              }
-            );
-            setTimeout(() => {
-              localStorage.removeItem('loginToken');
-              localStorage.removeItem('loginEmail');
-              window.location.reload();
-            }, 300000);
-          }
+    if (email.length == 0 || password.length == 0) {
+      validated = false;
+      toast('Enter Email & password');
+    }
+    if (validated) {
+      try {
+        Axios.post('https://reqres.in/api/login', {
+          email,
+          password,
         })
-        .catch((error) => {
-          console.log('Incorrect email/Password');
-          toast('Invalid username /password');
-        });
-    } catch (e) {
-      console.log('asdasd' + e.message);
+          .then((response) => {
+            let data = response.data;
+            if (data) {
+              props.setLoggedIn(true);
+              localStorage.setItem('loginToken', data.token);
+              localStorage.setItem('userEmail', email);
+              console.log(`token: ${data.token}`);
+              toast('Successfully logged in');
+              Axios.post(`https://reqres.in/api/${data.token}`).then(
+                (response) => {
+                  let data = response.data;
+                  console.log(`secure API ${JSON.stringify(response.headers)}`);
+                }
+              );
+              setTimeout(() => {
+                localStorage.removeItem('loginToken');
+                localStorage.removeItem('loginEmail');
+                window.location.reload();
+              }, 300000);
+            }
+          })
+          .catch((error) => {
+            console.log('Incorrect email/Password');
+            toast('Invalid username /password');
+          });
+      } catch (e) {
+        console.log('asdasd' + e.message);
+      }
     }
   };
   return (
