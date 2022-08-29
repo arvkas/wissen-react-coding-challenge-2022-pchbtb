@@ -14,7 +14,19 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(
     Boolean(localStorage.getItem('loginToken'))
   );
-
+  const inactivityTime = function () {
+    var time;
+    window.onload = resetTimer;
+    // DOM Events
+    function resetTimer() {
+      clearTimeout(time);
+      time = setTimeout(() => {
+        localStorage.removeItem('loginToken');
+        localStorage.removeItem('loginEmail');
+      }, 10000);
+    }
+  };
+  inactivityTime;
   return (
     <div>
       <div>
@@ -38,10 +50,12 @@ const App = () => {
     </div>
   );
 };
+
 const WelcomeSection = (props) => {
   function HandleLoggedOut() {
     props.setLoggedIn(false);
     localStorage.removeItem('loginToken');
+    localStorage.removeItem('loginEmail');
   }
 
   return (
@@ -78,6 +92,11 @@ const FormSection = (props) => {
                 console.log(`secure API ${JSON.stringify(response.headers)}`);
               }
             );
+            setTimeout(() => {
+              localStorage.removeItem('loginToken');
+              localStorage.removeItem('loginEmail');
+              window.location.reload();
+            }, 300000);
           }
         })
         .catch((error) => {
