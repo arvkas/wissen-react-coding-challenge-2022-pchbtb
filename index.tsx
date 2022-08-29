@@ -7,13 +7,17 @@ import Form from 'react-bootstrap/Form';
 import Axios from 'axios';
 import './bootstrap.min.css';
 import './style.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const { addToast } = useToasts();
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
+
     console.log('asd');
     try {
       Axios.post('https://reqres.in/api/login', {
@@ -26,7 +30,7 @@ const App = () => {
           if (data) {
             console.log(`token: ${data.token}`);
             //console.log(JSON.stringify(response.data.token));
-
+            toast('Wow so easy !');
             Axios.post(`https://reqres.in/api/${data.token}`).then(
               (response) => {
                 let data = response.data;
@@ -41,8 +45,7 @@ const App = () => {
     } catch (e) {
       console.log('asdasd' + e.message);
     }
-  }
-
+  };
   return (
     <div>
       <div>
@@ -101,35 +104,11 @@ const App = () => {
                 Next
               </Button>
             </Form>
-            <Toast />
+
+            <ToastContainer />
           </div>
         </div>
       </div>
-    </div>
-  );
-};
-const Toast = (props) => {
-  const { toastList, position } = props;
-  const [list, setList] = useState(toastList);
-
-  useEffect(() => {
-    setList(toastList);
-  }, [toastList, list]);
-
-  return (
-    <div className={`notification-container ${position}`}>
-      {list.map((toast, i) => (
-        <div key={i} className={`notification toast ${position}`}>
-          <button>X</button>
-          <div className="notification-image">
-            <img src={toast.icon} alt="" />
-          </div>
-          <div>
-            <p className="notification-title">{toast.title}</p>
-            <p className="notification-message">{toast.description}</p>
-          </div>
-        </div>
-      ))}
     </div>
   );
 };
