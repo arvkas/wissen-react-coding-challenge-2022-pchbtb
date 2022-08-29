@@ -17,8 +17,7 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log('asd');
+    // console.log('asd');
     try {
       Axios.post('https://reqres.in/api/login', {
         email,
@@ -26,11 +25,9 @@ const App = () => {
       })
         .then((response) => {
           let data = response.data;
-          //do whatever u want here eg :set token to local storage
           if (data) {
             console.log(`token: ${data.token}`);
-            //console.log(JSON.stringify(response.data.token));
-            toast('Wow so easy !');
+            toast('Successfully logged in');
             Axios.post(`https://reqres.in/api/${data.token}`).then(
               (response) => {
                 let data = response.data;
@@ -41,6 +38,7 @@ const App = () => {
         })
         .catch((error) => {
           console.log('Incorrect email/Password');
+          toast('Invalid username /password');
         });
     } catch (e) {
       console.log('asdasd' + e.message);
@@ -55,7 +53,7 @@ const App = () => {
             className="logoImg"
           />
           <h3 className="formTitle">Hello there, Sign in to continue.</h3>
-          <div className="col-md-3 formText">
+          <div className="formText">
             <Form className="ms-2 mt-4" onSubmit={handleSubmit}>
               <Form.Group
                 className="mb-3 blockLevel"
@@ -104,7 +102,6 @@ const App = () => {
                 Next
               </Button>
             </Form>
-
             <ToastContainer />
           </div>
         </div>

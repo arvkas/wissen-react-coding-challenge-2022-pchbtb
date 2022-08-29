@@ -30,6 +30,7 @@ h3 {
 }
 .formText {
   font-size: 14px;
+  width: 360px;
 }
 .blockLevel {
   display: block;
