@@ -7,7 +7,7 @@ const App = () => {
     <div>
       <div>
         <div>
-          <h3>Hello there, Sign in to continue</h3>
+          <h3>Hello there, Sign in to continue.</h3>
 
           <div>
             <form>
