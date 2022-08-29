@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { render } from 'react-dom';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
@@ -23,6 +24,9 @@ const App = () => {
       console.log(e.error);
     }
   }
+  function setUsername(This) {
+    console.log(This);
+  }
   return (
     <div>
       <div>
@@ -39,7 +43,11 @@ const App = () => {
                 controlId="formBasicEmail"
               >
                 <label className="mailLabel">Email</label>
-                <Form.Control type="email" className="inputField" />
+                <Form.Control
+                  type="email"
+                  className="inputField"
+                  onChange={(e) => setUsername(e.target.value)}
+                />
               </Form.Group>
               <Form.Group
                 className="mb-3 mt-4 blockLevel"
