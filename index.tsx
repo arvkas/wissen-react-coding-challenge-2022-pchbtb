@@ -8,25 +8,40 @@ import './bootstrap.min.css';
 import './style.css';
 
 const App = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log('asd');
     try {
       Axios.post('https://reqres.in/api/login', {
-        email: 'eve.holt@reqres.in',
-        password: 'cityslicka',
-      }).then((response) => {
-        let data = response.data;
-        //do whatever u want here eg :set token to local storage
-        console.log('token' + data.token);
-      });
+        email,
+        password,
+      })
+        .then((response) => {
+          let data = response.data;
+          //do whatever u want here eg :set token to local storage
+          if (data) {
+            console.log(`token: ${data.token}`);
+            //console.log(JSON.stringify(response.data.token));
+
+            Axios.post(`https://reqres.in/api/${data.token}`).then(
+              (response) => {
+                let data = response.data;
+                console.log('secure API' + JSON.stringify(response.headers));
+              }
+            );
+          }
+        })
+        .catch((error) => {
+          console.log('Incorrect email/Password');
+        });
     } catch (e) {
-      console.log(e.error);
+      console.log('asdasd' + e.message);
     }
   }
-  function setUsername(This) {
-    console.log(This);
-  }
+
   return (
     <div>
       <div>
@@ -46,7 +61,7 @@ const App = () => {
                 <Form.Control
                   type="email"
                   className="inputField"
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Form.Group>
               <Form.Group
@@ -54,7 +69,11 @@ const App = () => {
                 controlId="formBasicPassword"
               >
                 <label className="mailLabel">Password</label>
-                <Form.Control type="password" className="inputField" />
+                <Form.Control
+                  type="password"
+                  className="inputField"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </Form.Group>
               <Form.Group
                 className="mb-3 mt-4 blockLevel"
