@@ -21,15 +21,15 @@ const App = () => {
                 className="mb-3 blockLevel"
                 controlId="formBasicEmail"
               >
-                <Form.Label className="mailLabel">Email</Form.Label>
-                <Form.Control type="email" />
+                <Form.Label className="">Email</Form.Label>
+                <Form.Control type="email" className="inputField" />
               </Form.Group>
               <Form.Group
                 className="mb-3 mt-4 blockLevel"
                 controlId="formBasicPassword"
               >
-                <Form.Label className="mailLabel">Password</Form.Label>
-                <Form.Control type="password" />
+                <Form.Label className="">Password</Form.Label>
+                <Form.Control type="password" className="inputField" />
               </Form.Group>
               <Form.Group
                 className="mb-3 mt-4 blockLevel"
