@@ -87,9 +87,9 @@ const FormSection = (props) => {
           .then((response) => {
             let data = response.data;
             if (data) {
-              props.setLoggedIn(true);
               localStorage.setItem('loginToken', data.token);
-              localStorage.setItem('userEmail', email);
+              localStorage.setItem('loginEmail', email);
+              props.setLoggedIn(true);
               console.log(`token: ${data.token}`);
               toast('Successfully logged in');
               Axios.post(`https://reqres.in/api/${data.token}`).then(
