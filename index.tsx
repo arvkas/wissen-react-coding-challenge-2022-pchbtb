@@ -22,15 +22,15 @@ const App = () => {
                 <Form.Control type="email" placeholder="Enter email" />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label className="mailLabel">Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" />
               </Form.Group>
               <Button
                 variant="primary"
                 type="submit"
-                className="btn btn-primary col-12"
+                className="btn btn-primary col-12 customBtn"
               >
-                Submit
+                Next
               </Button>
             </Form>
           </div>

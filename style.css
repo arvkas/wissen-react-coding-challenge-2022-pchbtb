@@ -17,3 +17,9 @@ h3 {
 .mailLabel {
   color: #a3a3a3;
 }
+.customBtn {
+  background-color: #cad1e7;
+  color: rgb(4, 4, 88);
+  border: none;
+  line-height: 40px;
+}
