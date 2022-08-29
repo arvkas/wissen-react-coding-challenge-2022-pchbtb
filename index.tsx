@@ -2,15 +2,26 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-// @ts-ignore
-import Axios from axios;
+import Axios from 'axios';
 import './bootstrap.min.css';
 import './style.css';
 
 const App = () => {
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("asd")
+    console.log('asd');
+    try {
+      Axios.post('https://reqres.in/api/login', {
+        email: 'eve.holt@reqres.in',
+        password: 'cityslicka',
+      }).then((response) => {
+        let data = response.data;
+        //do whatever u want here eg :set token to local storage
+        console.log('token' + data.token);
+      });
+    } catch (e) {
+      console.log(e.error);
+    }
   }
   return (
     <div>
@@ -42,7 +53,11 @@ const App = () => {
                 controlId="formBasicCheckbox"
               >
                 <Form.Label className="mailLabel">
-                  <input type="checkbox" name="terms" className="terms form-check-input" />
+                  <input
+                    type="checkbox"
+                    name="terms"
+                    className="terms form-check-input"
+                  />
                   <span>
                     By Crating or logging into an account, you are agreeing with
                     our <strong>Terms & Conitions</strong> and{' '}
